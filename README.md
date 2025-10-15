@@ -59,11 +59,66 @@ A tool for API development and testing.
 - Used to test API endpoints, verify responses, and debug issues.  
 - Ensures that backend services work as expected before frontend integration.
 
-### 🔐 JWT (JSON Web Tokens)
-A compact authentication method for secure user sessions.  
-- Handles login tokens to verify user identity.  
-- Ensures secure communication between client and server.
+## 🔒 API Security
 
+Security is a critical part of the **Airbnb Clone Project** to ensure that user data, transactions, and platform operations remain safe and trustworthy.  
+The project integrates multiple layers of protection across authentication, authorization, and data management.
+
+---
+
+### 🔐 Authentication
+Implements **JWT (JSON Web Tokens)** to verify user identity and secure API access.  
+- Ensures that only registered users can log in and interact with protected endpoints.  
+- Prevents unauthorized access and session hijacking.  
+**Why it matters:** Protects user accounts and personal information from being compromised.
+
+---
+
+### 🧩 Authorization
+Defines user roles (e.g., guest, host, admin) with specific access permissions.  
+- Hosts can manage their properties; guests can book; admins oversee the system.  
+- Enforces role-based access control (RBAC) to prevent privilege escalation.  
+**Why it matters:** Maintains data integrity and ensures users can only perform allowed actions.
+
+---
+
+### 🚫 Rate Limiting
+Applies rate limiting on API requests to prevent abuse and denial-of-service (DoS) attacks.  
+- Restricts the number of requests per user/IP per time interval.  
+- Helps maintain system performance and availability.  
+**Why it matters:** Protects backend resources and ensures fair use for all users.
+
+---
+
+### 🔑 Data Encryption
+All sensitive data (e.g., passwords, payment information) is encrypted using secure algorithms.  
+- Passwords are hashed using **bcrypt** or similar methods.  
+- Communication between client and server uses **HTTPS/TLS** encryption.  
+**Why it matters:** Prevents data leaks, man-in-the-middle attacks, and identity theft.
+
+---
+
+### 🧱 Input Validation & Sanitization
+All incoming data is validated and sanitized before being processed.  
+- Prevents common vulnerabilities such as SQL Injection and Cross-Site Scripting (XSS).  
+**Why it matters:** Ensures data integrity and prevents malicious payloads from compromising the system.
+
+---
+
+### 💳 Payment Security
+Integrates trusted payment gateways (e.g., Stripe, PayPal, or M-Pesa API).  
+- Tokens are used instead of storing card details locally.  
+- Follows PCI-DSS compliance standards.  
+**Why it matters:** Protects financial transactions and user trust.
+
+---
+
+### 🧠 Logging & Monitoring
+Maintains detailed logs of user actions, authentication attempts, and system errors.  
+- Supports audit trails and early detection of suspicious activity.  
+**Why it matters:** Helps in tracking incidents and maintaining accountability.
+
+---
 
 ---
 
