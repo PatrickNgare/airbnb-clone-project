@@ -222,9 +222,58 @@ Handles payment information for completed bookings.
 - **Property ⇄ Review:** One-to-Many (a property can have many reviews)  
 - **Booking ⇄ Payment:** One-to-One (each booking has one payment)
 
+## ✨ Feature Breakdown
+
+The **Airbnb Clone Project** includes a collection of core features designed to simulate real-world property rental functionality.  
+Each feature contributes to providing a seamless, user-friendly, and scalable booking experience.
+
 ---
 
-### 🧩 Example ER Diagram (Conceptual)
-You can visualize this as:
+### 👤 User Management
+Allows users to register, log in, and manage their profiles securely.  
+Includes authentication and authorization (via JWT or OAuth) to differentiate between hosts and guests, ensuring data privacy and secure access control.
 
+---
+
+### 🏠 Property Management
+Hosts can list new properties with images, descriptions, prices, and availability details.  
+This feature enables property owners to edit or remove listings and view booking histories for better management and control.
+
+---
+
+### 📅 Booking System
+Enables guests to browse available properties, select dates, and make reservations.  
+It includes features like availability validation, price calculation, and automatic booking confirmations to provide a smooth and reliable booking experience.
+
+---
+
+### 💬 Review and Rating System
+Allows guests to leave feedback and rate properties after their stay.  
+This feature builds trust between users, improves listing quality, and enhances the overall transparency of the platform.
+
+---
+
+### 💳 Payment Integration
+Handles secure transactions for property bookings.  
+Supports different payment methods (e.g., card, PayPal, M-Pesa) and provides payment status updates to ensure reliability and confidence for both hosts and guests.
+
+---
+
+### 🔍 Advanced Search and Filtering
+Lets users search for properties based on location, price, property type, and availability.  
+Enhances usability by helping guests find listings that match their preferences quickly and efficiently.
+
+---
+
+### 📱 Responsive User Interface
+Ensures a consistent and engaging experience across desktop, tablet, and mobile devices.  
+Built with React.js (and Tailwind CSS) to deliver fast, interactive pages and intuitive navigation.
+
+---
+
+### ⚙️ Admin Dashboard *(optional enhancement)*
+Provides administrators with insights into platform performance, user activity, and reported issues.  
+Supports moderation, analytics, and maintenance tasks to keep the system running efficiently.
+
+---
 
