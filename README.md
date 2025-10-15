@@ -15,13 +15,55 @@ Built to demonstrate proficiency in full-stack development, database design, and
 - 🌐 Deployed on AWS/Vercel/Render
 
 ---
+## 🧰 Technology Stack
 
-## 🧰 Tech Stack
-**Frontend:** React.js / Next.js / Tailwind CSS  
-**Backend:** Node.js / FastAPI / Django REST Framework  
-**Database:** PostgreSQL / MongoDB  
-**Auth:** JWT-based Authentication / OAuth 2.0  
-**Deployment:** AWS / Vercel / Render  
+Below is an overview of the technologies used in the **Airbnb Clone Project**, along with their purpose and role within the system architecture.
+
+### 🐍 Django
+A high-level Python web framework used to build secure and scalable backend services.  
+- Provides structure for handling requests, routing, and responses.  
+- Simplifies development with built-in authentication, ORM, and admin panel.  
+- Used to create RESTful APIs for managing listings, users, and bookings.
+
+### 🗄️ PostgreSQL
+A robust, open-source relational database used for storing structured data.  
+- Stores user accounts, property details, and booking records.  
+- Ensures data integrity and supports complex queries efficiently.  
+- Integrates seamlessly with Django through its ORM.
+
+### ⚙️ GraphQL
+An API query language that enables flexible data retrieval.  
+- Allows clients to request only the data they need.  
+- Reduces over-fetching and under-fetching of data.  
+- Simplifies communication between frontend and backend.
+
+### 🖥️ React.js
+A JavaScript library for building interactive and responsive user interfaces.  
+- Powers the frontend for users to browse, book, and manage listings.  
+- Connects to backend APIs to display real-time data.  
+- Enhances UX through reusable components and dynamic rendering.
+
+### 🎨 Tailwind CSS
+A utility-first CSS framework used to design responsive and modern layouts.  
+- Provides pre-defined styling utilities to build clean, consistent UI.  
+- Accelerates design workflow and ensures mobile responsiveness.  
+
+### ☁️ AWS (Amazon Web Services)
+Used for hosting, deployment, and cloud storage.  
+- Hosts both backend and frontend for global accessibility.  
+- Provides secure, scalable infrastructure and data storage solutions.  
+- Ensures reliability and performance for live users.
+
+### 🧪 Postman
+A tool for API development and testing.  
+- Used to test API endpoints, verify responses, and debug issues.  
+- Ensures that backend services work as expected before frontend integration.
+
+### 🔐 JWT (JSON Web Tokens)
+A compact authentication method for secure user sessions.  
+- Handles login tokens to verify user identity.  
+- Ensures secure communication between client and server.
+
 
 ---
 
