@@ -6,365 +6,185 @@ Built to demonstrate proficiency in full-stack development, database design, and
 
 ---
 
-## 🚀 Features
+## 🚀 Features Overview
 - 🔐 User authentication and authorization (JWT/OAuth)
 - 🏠 Property listings with image uploads
 - 📅 Booking and reservation management
 - 💬 Reviews and ratings
+- 💳 Payment integration
 - 📱 Responsive and modern UI design
 - 🌐 Deployed on AWS/Vercel/Render
 
 ---
+
 ## 🧰 Technology Stack
 
 Below is an overview of the technologies used in the **Airbnb Clone Project**, along with their purpose and role within the system architecture.
 
 ### 🐍 Django
 A high-level Python web framework used to build secure and scalable backend services.  
-- Provides structure for handling requests, routing, and responses.  
-- Simplifies development with built-in authentication, ORM, and admin panel.  
-- Used to create RESTful APIs for managing listings, users, and bookings.
+Provides structure for routing, authentication, and RESTful APIs.
 
 ### 🗄️ PostgreSQL
-A robust, open-source relational database used for storing structured data.  
-- Stores user accounts, property details, and booking records.  
-- Ensures data integrity and supports complex queries efficiently.  
-- Integrates seamlessly with Django through its ORM.
+A robust, open-source relational database used to store structured data such as users, properties, and bookings.  
+Ensures data integrity and supports complex relationships.
 
 ### ⚙️ GraphQL
-An API query language that enables flexible data retrieval.  
-- Allows clients to request only the data they need.  
-- Reduces over-fetching and under-fetching of data.  
-- Simplifies communication between frontend and backend.
+A query language that enables flexible and efficient data retrieval, reducing over-fetching and simplifying frontend-backend communication.
 
 ### 🖥️ React.js
 A JavaScript library for building interactive and responsive user interfaces.  
-- Powers the frontend for users to browse, book, and manage listings.  
-- Connects to backend APIs to display real-time data.  
-- Enhances UX through reusable components and dynamic rendering.
+Connects to backend APIs and delivers dynamic, real-time experiences.
 
 ### 🎨 Tailwind CSS
-A utility-first CSS framework used to design responsive and modern layouts.  
-- Provides pre-defined styling utilities to build clean, consistent UI.  
-- Accelerates design workflow and ensures mobile responsiveness.  
+A utility-first CSS framework that ensures consistent, responsive, and modern UI design.
 
 ### ☁️ AWS (Amazon Web Services)
-Used for hosting, deployment, and cloud storage.  
-- Hosts both backend and frontend for global accessibility.  
-- Provides secure, scalable infrastructure and data storage solutions.  
-- Ensures reliability and performance for live users.
+Used for hosting, deployment, and cloud storage to ensure scalability, reliability, and global accessibility.
 
 ### 🧪 Postman
-A tool for API development and testing.  
-- Used to test API endpoints, verify responses, and debug issues.  
-- Ensures that backend services work as expected before frontend integration.
+A testing tool used for API validation and debugging during backend development.
+
+---
+
+## ✨ Feature Breakdown
+
+### 👤 User Management
+Secure user registration, login, and profile management.  
+Includes authentication and authorization to distinguish between guests and hosts.
+
+### 🏠 Property Management
+Hosts can list, edit, and manage their properties with details and images.  
+Improves the experience for property owners and enhances platform engagement.
+
+### 📅 Booking System
+Allows guests to search, book, and manage reservations with real-time availability validation and total cost calculation.
+
+### 💬 Review and Rating System
+Guests can rate and review properties after their stay, improving transparency and helping others make informed choices.
+
+### 💳 Payment Integration
+Handles secure payments via trusted gateways like Stripe, PayPal, or M-Pesa.  
+Ensures seamless and safe financial transactions.
+
+### 🔍 Advanced Search and Filtering
+Enables users to search listings by location, price, and property type.  
+Improves usability and helps users find ideal stays quickly.
+
+### 📱 Responsive UI
+Fully responsive interface for desktop and mobile devices.  
+Built with React and Tailwind for speed and accessibility.
+
+### ⚙️ Admin Dashboard (Optional)
+Allows system administrators to manage users, monitor performance, and handle platform reports.
+
+---
+
+## 🗄️ Database Design
+
+### 🧑‍💻 Users
+- `user_id`, `full_name`, `email`, `password_hash`, `role`  
+Each user can own properties, make bookings, and write reviews.
+
+### 🏠 Properties
+- `property_id`, `user_id`, `title`, `description`, `location`, `price_per_night`  
+Each property belongs to one host and can have multiple bookings and reviews.
+
+### 📅 Bookings
+- `booking_id`, `user_id`, `property_id`, `check_in_date`, `check_out_date`, `total_price`, `status`  
+Each booking belongs to one user and one property.
+
+### 💬 Reviews
+- `review_id`, `user_id`, `property_id`, `rating`, `comment`, `created_at`  
+Each review is tied to one user and one property.
+
+### 💳 Payments
+- `payment_id`, `booking_id`, `amount`, `payment_method`, `payment_status`, `transaction_date`  
+Each payment corresponds to a specific booking.
+
+**Entity Relationships Summary:**
+- User ⇄ Property → One-to-Many  
+- User ⇄ Booking → One-to-Many  
+- Property ⇄ Booking → One-to-Many  
+- Property ⇄ Review → One-to-Many  
+- Booking ⇄ Payment → One-to-One
+
+---
 
 ## 🔒 API Security
 
-Security is a critical part of the **Airbnb Clone Project** to ensure that user data, transactions, and platform operations remain safe and trustworthy.  
-The project integrates multiple layers of protection across authentication, authorization, and data management.
-
----
+Security ensures safe interactions and data protection across the platform.
 
 ### 🔐 Authentication
-Implements **JWT (JSON Web Tokens)** to verify user identity and secure API access.  
-- Ensures that only registered users can log in and interact with protected endpoints.  
-- Prevents unauthorized access and session hijacking.  
-**Why it matters:** Protects user accounts and personal information from being compromised.
-
----
+JWT tokens secure endpoints and protect user sessions.  
+**Why:** Prevents unauthorized access and identity theft.
 
 ### 🧩 Authorization
-Defines user roles (e.g., guest, host, admin) with specific access permissions.  
-- Hosts can manage their properties; guests can book; admins oversee the system.  
-- Enforces role-based access control (RBAC) to prevent privilege escalation.  
-**Why it matters:** Maintains data integrity and ensures users can only perform allowed actions.
-
----
+Role-based access control ensures users perform only allowed actions.  
+**Why:** Preserves data integrity and prevents privilege abuse.
 
 ### 🚫 Rate Limiting
-Applies rate limiting on API requests to prevent abuse and denial-of-service (DoS) attacks.  
-- Restricts the number of requests per user/IP per time interval.  
-- Helps maintain system performance and availability.  
-**Why it matters:** Protects backend resources and ensures fair use for all users.
-
----
+Prevents API abuse by limiting requests per IP.  
+**Why:** Protects system performance and stability.
 
 ### 🔑 Data Encryption
-All sensitive data (e.g., passwords, payment information) is encrypted using secure algorithms.  
-- Passwords are hashed using **bcrypt** or similar methods.  
-- Communication between client and server uses **HTTPS/TLS** encryption.  
-**Why it matters:** Prevents data leaks, man-in-the-middle attacks, and identity theft.
+Encrypts passwords and sensitive data using bcrypt & HTTPS/TLS.  
+**Why:** Prevents data breaches and eavesdropping.
 
----
-
-### 🧱 Input Validation & Sanitization
-All incoming data is validated and sanitized before being processed.  
-- Prevents common vulnerabilities such as SQL Injection and Cross-Site Scripting (XSS).  
-**Why it matters:** Ensures data integrity and prevents malicious payloads from compromising the system.
-
----
+### 🧱 Input Validation
+Sanitizes user input to prevent SQL Injection and XSS.  
+**Why:** Protects system from malicious input.
 
 ### 💳 Payment Security
-Integrates trusted payment gateways (e.g., Stripe, PayPal, or M-Pesa API).  
-- Tokens are used instead of storing card details locally.  
-- Follows PCI-DSS compliance standards.  
-**Why it matters:** Protects financial transactions and user trust.
-
----
+Implements token-based payment gateways (Stripe, PayPal, M-Pesa).  
+**Why:** Ensures secure and PCI-compliant financial transactions.
 
 ### 🧠 Logging & Monitoring
-Maintains detailed logs of user actions, authentication attempts, and system errors.  
-- Supports audit trails and early detection of suspicious activity.  
-**Why it matters:** Helps in tracking incidents and maintaining accountability.
+Tracks API activity and user actions for auditing and debugging.  
+**Why:** Enhances accountability and system reliability.
 
 ---
+
+## ⚙️ CI/CD Pipeline
+
+### 🔁 Continuous Integration (CI)
+Automatically tests and validates code on every commit to maintain quality.  
+**Benefit:** Detects issues early and ensures team collaboration efficiency.
+
+### 🚀 Continuous Deployment (CD)
+Automates deployment to staging or production environments.  
+**Benefit:** Reduces downtime and accelerates release cycles.
+
+### 🧰 Tools Used
+- **GitHub Actions:** For build, test, and deploy workflows.  
+- **Docker:** For containerization and environment consistency.  
+- **AWS / Render / Vercel:** For deployment and hosting.  
+- **Pytest / Jest / Postman:** For automated testing in CI pipelines.
+
+---
+
+## 👥 Team Roles
+
+### 🧑‍💻 Backend Developer
+Builds RESTful APIs, manages authentication, and ensures scalability and security.
+
+### 🎨 Frontend Developer
+Implements responsive UI and integrates with backend APIs.
+
+### 🗄️ Database Administrator (DBA)
+Designs and maintains the database, ensuring integrity and performance.
+
+### 🧪 QA Engineer
+Tests application features, identifies bugs, and verifies code quality.
+
+### 🧠 Project Manager
+Oversees planning, coordination, and delivery of milestones.
 
 ---
 
 ## ⚙️ Installation & Setup
-1. Clone the repository:
+
+1. **Clone the repository**
    ```bash
    git clone https://github.com/yourusername/airbnb-clone.git
    cd airbnb-clone
-## 👥 Team Roles
-
-Below are the key roles and their responsibilities in the Airbnb Clone Project.  
-These roles reflect a collaborative software development team structure inspired by industry practices (as outlined by ITRex Group).
-
-### 🧑‍💻 Backend Developer
-Responsible for building and maintaining the server-side logic of the application.  
-- Designs and implements RESTful APIs  
-- Manages authentication, authorization, and data validation  
-- Integrates with databases and external services  
-- Ensures scalability, performance, and security
-
-### 🗄️ Database Administrator (DBA)
-Manages data integrity, performance, and reliability.  
-- Designs the database schema  
-- Optimizes queries and handles migrations  
-- Monitors database performance and backup routines  
-- Ensures data consistency and availability
-
-### 🎨 Frontend Developer
-Creates intuitive, responsive, and accessible user interfaces.  
-- Implements designs using modern frameworks (React, Next.js, etc.)  
-- Connects the frontend to backend APIs  
-- Ensures responsive and cross-browser compatibility  
-- Focuses on user experience (UX) and usability
-
-### 🧠 Project Manager
-Oversees planning, coordination, and timely delivery of project milestones.  
-- Defines scope, goals, and timelines  
-- Facilitates communication among team members  
-- Manages version control, issues, and sprint reviews  
-- Ensures that project objectives align with stakeholder requirements
-
-### 🧪 QA Engineer (Tester)
-Ensures the product meets quality standards before deployment.  
-- Creates and runs test cases (unit, integration, end-to-end)  
-- Identifies and documents bugs  
-- Works closely with developers to resolve issues  
-- Verifies that new features do not break existing functionality
-
-## ⚙️ CI/CD Pipeline
-
-The **CI/CD (Continuous Integration and Continuous Deployment)** pipeline ensures that new code changes are automatically tested, integrated, and deployed to production environments with minimal manual intervention.  
-It improves development speed, consistency, and reliability by automating repetitive processes.
-
----
-
-### 🔁 Continuous Integration (CI)
-Continuous Integration automatically runs tests and checks each time new code is pushed to the repository.  
-- Validates code quality and ensures that new commits do not break existing functionality.  
-- Detects bugs early by integrating and testing frequently.  
-**Benefit:** Reduces integration issues and increases team collaboration efficiency.
-
----
-
-### 🚀 Continuous Deployment (CD)
-Continuous Deployment automates the release process, pushing tested and verified code to staging or production environments.  
-- Streamlines delivery of new features and bug fixes.  
-- Ensures that the latest stable version of the app is always available.  
-**Benefit:** Enables faster updates and reduces downtime during deployment.
-
----
-
-### 🧰 Tools Used
-The project can integrate the following tools to implement CI/CD:
-
-- **GitHub Actions:** Automates build, test, and deployment workflows directly from the repository.  
-- **Docker:** Containerizes the application to ensure consistent environments across development and production.  
-- **AWS / Render / Vercel:** Used for hosting and automatic deployment of backend and frontend services.  
-- **Postman / Pytest / Jest:** Used for API and unit testing during CI workflows.  
-
----
-
-### 🔒 Why CI/CD Matters
-Implementing a CI/CD pipeline helps:
-- Maintain code reliability through automated testing.  
-- Reduce deployment errors by eliminating manual steps.  
-- Improve team productivity with faster delivery cycles.  
-- Enhance user experience by ensuring frequent, stable updates.
-
----
-
-
-
-
-## 🗄️ Database Design
-
-The **Airbnb Clone Project** database is designed to manage users, properties, bookings, reviews, and payments.  
-It follows a relational structure where entities are linked through primary and foreign keys to ensure data consistency and integrity.
-
----
-
-### 🧑‍💻 Users
-Represents all registered users — both hosts and guests.
-
-**Key Fields:**
-- `user_id` (Primary Key)
-- `full_name`
-- `email`
-- `password_hash`
-- `role` (e.g., host, guest)
-
-**Relationships:**
-- A user **can list multiple properties**.
-- A user **can make multiple bookings**.
-- A user **can write reviews** for properties they booked.
-
----
-
-### 🏠 Properties
-Represents all listed accommodations available for booking.
-
-**Key Fields:**
-- `property_id` (Primary Key)
-- `user_id` (Foreign Key → Users)
-- `title`
-- `description`
-- `location`
-- `price_per_night`
-
-**Relationships:**
-- A property **belongs to one user (host)**.
-- A property **can have many bookings**.
-- A property **can receive multiple reviews**.
-
----
-
-### 📅 Bookings
-Tracks reservations made by guests for specific properties.
-
-**Key Fields:**
-- `booking_id` (Primary Key)
-- `user_id` (Foreign Key → Users)
-- `property_id` (Foreign Key → Properties)
-- `check_in_date`
-- `check_out_date`
-- `total_price`
-- `status` (e.g., confirmed, cancelled, completed)
-
-**Relationships:**
-- A booking **belongs to one property**.
-- A booking **is made by one user (guest)**.
-
----
-
-### 💬 Reviews
-Stores feedback and ratings from users after their stay.
-
-**Key Fields:**
-- `review_id` (Primary Key)
-- `user_id` (Foreign Key → Users)
-- `property_id` (Foreign Key → Properties)
-- `rating` (1–5)
-- `comment`
-- `created_at`
-
-**Relationships:**
-- A review **belongs to one user**.
-- A review **is associated with one property**.
-
----
-
-### 💳 Payments
-Handles payment information for completed bookings.
-
-**Key Fields:**
-- `payment_id` (Primary Key)
-- `booking_id` (Foreign Key → Bookings)
-- `amount`
-- `payment_method` (e.g., credit card, PayPal)
-- `payment_status` (e.g., successful, failed)
-- `transaction_date`
-
-**Relationships:**
-- A payment **is linked to one booking**.
-- A booking **has one corresponding payment**.
-
----
-
-### 🔗 Entity Relationships Summary
-- **User ⇄ Property:** One-to-Many (a host can list many properties)  
-- **Property ⇄ Booking:** One-to-Many (a property can have many bookings)  
-- **User ⇄ Booking:** One-to-Many (a user can make many bookings)  
-- **Property ⇄ Review:** One-to-Many (a property can have many reviews)  
-- **Booking ⇄ Payment:** One-to-One (each booking has one payment)
-
-## ✨ Feature Breakdown
-
-The **Airbnb Clone Project** includes a collection of core features designed to simulate real-world property rental functionality.  
-Each feature contributes to providing a seamless, user-friendly, and scalable booking experience.
-
----
-
-### 👤 User Management
-Allows users to register, log in, and manage their profiles securely.  
-Includes authentication and authorization (via JWT or OAuth) to differentiate between hosts and guests, ensuring data privacy and secure access control.
-
----
-
-### 🏠 Property Management
-Hosts can list new properties with images, descriptions, prices, and availability details.  
-This feature enables property owners to edit or remove listings and view booking histories for better management and control.
-
----
-
-### 📅 Booking System
-Enables guests to browse available properties, select dates, and make reservations.  
-It includes features like availability validation, price calculation, and automatic booking confirmations to provide a smooth and reliable booking experience.
-
----
-
-### 💬 Review and Rating System
-Allows guests to leave feedback and rate properties after their stay.  
-This feature builds trust between users, improves listing quality, and enhances the overall transparency of the platform.
-
----
-
-### 💳 Payment Integration
-Handles secure transactions for property bookings.  
-Supports different payment methods (e.g., card, PayPal, M-Pesa) and provides payment status updates to ensure reliability and confidence for both hosts and guests.
-
----
-
-### 🔍 Advanced Search and Filtering
-Lets users search for properties based on location, price, property type, and availability.  
-Enhances usability by helping guests find listings that match their preferences quickly and efficiently.
-
----
-
-### 📱 Responsive User Interface
-Ensures a consistent and engaging experience across desktop, tablet, and mobile devices.  
-Built with React.js (and Tailwind CSS) to deliver fast, interactive pages and intuitive navigation.
-
----
-
-### ⚙️ Admin Dashboard *(optional enhancement)*
-Provides administrators with insights into platform performance, user activity, and reported issues.  
-Supports moderation, analytics, and maintenance tasks to keep the system running efficiently.
-
----
-
