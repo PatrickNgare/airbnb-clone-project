@@ -118,3 +118,113 @@ Automates and maintains deployment pipelines and infrastructure.
 - Handles deployment environments (AWS, Render, Vercel)  
 - Monitors app performance and logs  
 - Ensures high availability and system reliability
+- 
+
+
+## 🗄️ Database Design
+
+The **Airbnb Clone Project** database is designed to manage users, properties, bookings, reviews, and payments.  
+It follows a relational structure where entities are linked through primary and foreign keys to ensure data consistency and integrity.
+
+---
+
+### 🧑‍💻 Users
+Represents all registered users — both hosts and guests.
+
+**Key Fields:**
+- `user_id` (Primary Key)
+- `full_name`
+- `email`
+- `password_hash`
+- `role` (e.g., host, guest)
+
+**Relationships:**
+- A user **can list multiple properties**.
+- A user **can make multiple bookings**.
+- A user **can write reviews** for properties they booked.
+
+---
+
+### 🏠 Properties
+Represents all listed accommodations available for booking.
+
+**Key Fields:**
+- `property_id` (Primary Key)
+- `user_id` (Foreign Key → Users)
+- `title`
+- `description`
+- `location`
+- `price_per_night`
+
+**Relationships:**
+- A property **belongs to one user (host)**.
+- A property **can have many bookings**.
+- A property **can receive multiple reviews**.
+
+---
+
+### 📅 Bookings
+Tracks reservations made by guests for specific properties.
+
+**Key Fields:**
+- `booking_id` (Primary Key)
+- `user_id` (Foreign Key → Users)
+- `property_id` (Foreign Key → Properties)
+- `check_in_date`
+- `check_out_date`
+- `total_price`
+- `status` (e.g., confirmed, cancelled, completed)
+
+**Relationships:**
+- A booking **belongs to one property**.
+- A booking **is made by one user (guest)**.
+
+---
+
+### 💬 Reviews
+Stores feedback and ratings from users after their stay.
+
+**Key Fields:**
+- `review_id` (Primary Key)
+- `user_id` (Foreign Key → Users)
+- `property_id` (Foreign Key → Properties)
+- `rating` (1–5)
+- `comment`
+- `created_at`
+
+**Relationships:**
+- A review **belongs to one user**.
+- A review **is associated with one property**.
+
+---
+
+### 💳 Payments
+Handles payment information for completed bookings.
+
+**Key Fields:**
+- `payment_id` (Primary Key)
+- `booking_id` (Foreign Key → Bookings)
+- `amount`
+- `payment_method` (e.g., credit card, PayPal)
+- `payment_status` (e.g., successful, failed)
+- `transaction_date`
+
+**Relationships:**
+- A payment **is linked to one booking**.
+- A booking **has one corresponding payment**.
+
+---
+
+### 🔗 Entity Relationships Summary
+- **User ⇄ Property:** One-to-Many (a host can list many properties)  
+- **Property ⇄ Booking:** One-to-Many (a property can have many bookings)  
+- **User ⇄ Booking:** One-to-Many (a user can make many bookings)  
+- **Property ⇄ Review:** One-to-Many (a property can have many reviews)  
+- **Booking ⇄ Payment:** One-to-One (each booking has one payment)
+
+---
+
+### 🧩 Example ER Diagram (Conceptual)
+You can visualize this as:
+
+
